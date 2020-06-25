@@ -64,5 +64,5 @@ class Command:
 
         return Command(func, category, special, sub)
 
-    def execute(self):
-        return Buki.get(self.category, self.sub, self.special)
+    def execute(self, replica: bool = False):
+        return Buki.get(self.category, self.sub, self.special, replica)

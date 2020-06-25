@@ -554,8 +554,7 @@ class Buki:
                 MainWeapon.spla_charger,
                 SubWeapon.splash_bomb,
                 SpecialWeapon.hyper_presser,
-                Custom.original,
-                True
+                Custom.original
             ),
             Buki(
                 'スクイックリンα',
@@ -640,8 +639,7 @@ class Buki:
                 MainWeapon.spla_charger,
                 SubWeapon.splash_shield,
                 SpecialWeapon.bomb_pitcher,
-                Custom.collabo,
-                True
+                Custom.collabo
             ),
             Buki(
                 'リッター4K',
@@ -656,8 +654,7 @@ class Buki:
                 MainWeapon.litter,
                 SubWeapon.trap,
                 SpecialWeapon.rain,
-                Custom.original,
-                True
+                Custom.original
             ),
             Buki(
                 'リッター4Kカスタム',
@@ -697,8 +694,7 @@ class Buki:
                 MainWeapon.spla_charger,
                 SubWeapon.sprinkler,
                 SpecialWeapon.ika_sphere,
-                Custom.betchu,
-                True
+                Custom.betchu
             ),
             Buki(
                 'ノヴァブラスターネオ',

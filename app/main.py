@@ -23,12 +23,12 @@ async def on_message(message: Message):
 
         if command.func is Function.give_me:
             weapon = weapons[random.randrange(0, len(weapons) - 1)]
-            await message.channel.send(f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞**{weapon.name}** ﾌﾞｫﾝ')
+            await message.channel.send(f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞ **{weapon.name}** ﾌﾞｫﾝ')
         elif command.func is Function.give:
             for channel in message.guild.voice_channels:  # type: VoiceChannel
                 for member in channel.members:  # type: Member
                     weapon = weapons[random.randrange(0, len(weapons) - 1)]
-                    await message.channel.send(f'{member.mention}（っ\'-\')╮ =͟͟͞͞**{weapon.name}** ﾌﾞｫﾝ')
+                    await message.channel.send(f'{member.mention}（っ\'-\')╮ =͟͟͞͞ **{weapon.name}** ﾌﾞｫﾝ')
         elif command.func is Function.help:
             await message.channel.send(f'ブキくじ\n'
                                        f'---- commands ----\n'
