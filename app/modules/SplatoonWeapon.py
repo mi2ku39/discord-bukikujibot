@@ -1242,7 +1242,8 @@ class Buki:
         for weapon in cls.weapons():
             if (category is None or weapon.category == category) and \
                     (sub is None or weapon.sub_weapon == sub) and \
-                    (special is None or weapon.special_weapon == special) and not (replica and weapon.replica):
+                    (special is None or weapon.special_weapon == special) and \
+                    not (replica and not weapon.replica or not replica and weapon.replica):
                 list.append(weapon)
 
         return list
