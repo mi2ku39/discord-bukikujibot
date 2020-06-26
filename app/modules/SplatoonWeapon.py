@@ -1214,7 +1214,7 @@ class Buki:
                     (len(subs) <= 0 or weapon.sub_weapon in subs) and \
                     (len(specials) <= 0 or weapon.special_weapon in specials) and \
                     (len(customs) <= 0 or weapon.custom in customs) and \
-                    not (replica and not weapon.replica or not replica and weapon.replica):
+                    (not weapon.replica or replica):
                 list.append(weapon)
 
         return list
