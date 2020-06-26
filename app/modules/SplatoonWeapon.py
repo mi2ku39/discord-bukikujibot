@@ -356,7 +356,8 @@ class Buki:
                 Category.shooter,
                 MainWeapon.h3_lille,
                 SubWeapon.q_ban_bomb,
-                SpecialWeapon.ink_armor
+                SpecialWeapon.ink_armor,
+                Custom.other
             ),
             Buki(
                 'ボトルガイザー',
