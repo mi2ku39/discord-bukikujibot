@@ -1,17 +1,15 @@
 import json
 import random
-from pprint import pprint
 
 import discord
 from discord import Message, VoiceChannel, Member
+
 from modules.Command import Command, Function
 
 with open('config.json', 'r') as file:
     config = json.load(file)
 
-pprint(config)
-
-TOKEN = "NzI1NTg0NjQ2OTAwODA5ODI4.XvQ4ng.kSJg3R7j2gciWPmjTuoJifMip0Q"
+TOKEN = config['token']
 client = discord.Client()
 
 
