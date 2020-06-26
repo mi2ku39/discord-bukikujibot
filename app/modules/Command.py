@@ -41,8 +41,9 @@ class Command:
 
         for option in command:
             for enum in Option:
-                if option.startswith('--' + enum.value):
+                if option.startswith('--' + enum.value + '='):
                     value = option.replace('--' + enum.value + '=', '')
+
                     if enum is Option.cat or enum is Option.category:
                         categories.append(Category(value))
 

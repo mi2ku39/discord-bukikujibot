@@ -5,6 +5,7 @@ import discord
 from discord import Message, VoiceChannel, Member
 
 from modules.Command import Command, Function
+from modules.SplatoonWeapon import SubWeapon, SpecialWeapon, Custom, Category
 
 with open('config.json', 'r') as file:
     config = json.load(file)
@@ -18,8 +19,35 @@ async def on_message(message: Message):
     if message.author != client.user and message.content.startswith('$'):
         try:
             command = Command.instantiate(message.content)
+
         except ValueError as e:
-            await message.channel.send(f'パラメータの変換に失敗しました:man_bowing::man_bowing::man_bowing:\n```${e}```')
+            if str(e).endswith('SubWeapon'):
+                text = ''
+                for it in SubWeapon:
+                    text += str(it.value) + '\n'
+                await message.channel.send(f'サブウェポンの名前が違うかも:thinking:\n```{text}```')
+
+            elif str(e).endswith('Category'):
+                text = ''
+                for it in Category:
+                    text += str(it.value) + '\n'
+                await message.channel.send(f'ブキ種の名前が違うかも:thinking:\n```{text}```')
+
+            elif str(e).endswith('SpecialWeapon'):
+                text = ''
+                for it in SpecialWeapon:
+                    text += str(it.value) + '\n'
+                await message.channel.send(f'スペシャルウェポンの名前が違うかも:thinking:\n```{text}```')
+
+            elif str(e).endswith('Custom'):
+                text = ''
+                for it in Custom:
+                    text += str(it.value) + '\n'
+                await message.channel.send(f'そのカスタムは知らないです...\n```{text}```')
+
+            else:
+                await message.channel.send(f'パラメータの変換に失敗しました:man_bowing::man_bowing::man_bowing:\n```{e}```')
+
             return
 
         weapons = command.execute()
@@ -44,7 +72,7 @@ async def on_message(message: Message):
                                        f'`--cat` , `--category` : 武器種をきめる ex: `$give --cat=シューター` \n'
                                        f'`--sub` : サブウェポンをきめる ex: `$give --sub=スプラッシュボム` \n'
                                        f'`--special` : スペシャルウェポンをきめる ex: `$give --special=スーパーチャクチ` \n'
-                                       f'`--custom` : カスタムをきめる ex: `$give --custom=ブキチセレクション` `$give --custom=無印`\n'
+                                       f'`--custom` : カスタムをきめる ex: `$give --custom=ブキチセレクション` `$give --custom=無印`\n\n'
                                        f':warning: いずれも正式名称じゃないと動かないので注意 :warning:\n'
                                        f':heart: オプションは併用できます（同一オプションはOR、他オプションはAND） :heart:')
 

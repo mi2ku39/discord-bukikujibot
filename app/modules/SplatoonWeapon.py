@@ -103,7 +103,7 @@ class Custom(Enum):
     collabo = 'コラボ'
     replica = 'レプリカ'
     neo = 'ネオ'
-    bukiti = 'ブキチセレクション',
+    bukiti = 'ブキチセレクション'
     hue = 'ヒュー'
     foil = 'フォイル'
     other = 'その他'
