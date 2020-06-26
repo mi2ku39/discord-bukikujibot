@@ -54,14 +54,23 @@ async def on_message(message: Message):
 
         if len(weapons) <= 0:
             await message.channel.send(f'{message.author.mention} ｿﾝﾅﾌﾞｷ(ヾﾉ･∀･`)ﾅｲﾅｲ')
+
         elif command.func is Function.give_me:
-            weapon = weapons[random.randrange(0, len(weapons) - 1)]
-            await message.channel.send(f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞    **{weapon.name}**    ﾌﾞｫﾝ')
+            if len(weapons) <= 1:
+                await message.channel.send(f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞    **{weapons[0].name}**    ﾌﾞｫﾝ')
+            else:
+                weapon = weapons[random.randrange(0, len(weapons) - 1)]
+                await message.channel.send(f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞    **{weapon.name}**    ﾌﾞｫﾝ')
+
         elif command.func is Function.give:
             for channel in message.guild.voice_channels:  # type: VoiceChannel
                 for member in channel.members:  # type: Member
-                    weapon = weapons[random.randrange(0, len(weapons) - 1)]
-                    await message.channel.send(f'{member.mention}（っ\'-\')╮ =͟͟͞͞     **{weapon.name}**    ﾌﾞｫﾝ')
+                    if len(weapons) <= 1:
+                        await message.channel.send(
+                            f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞    **{weapons[0].name}**    ﾌﾞｫﾝ')
+                    else:
+                        weapon = weapons[random.randrange(0, len(weapons) - 1)]
+                        await message.channel.send(f'{member.mention}（っ\'-\')╮ =͟͟͞͞     **{weapon.name}**    ﾌﾞｫﾝ')
         elif command.func is Function.help:
             await message.channel.send(f'ブキくじ\n'
                                        f'---- commands ----\n'
