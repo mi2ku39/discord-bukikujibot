@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import List
 
 
 class MainWeapon(Enum):
@@ -67,13 +68,6 @@ class SubWeapon(Enum):
     tansan_bomb = 'タンサンボム'
     t_p_d = 'トーピード'
 
-    @classmethod
-    def value_of(cls, value):
-        for it in SubWeapon:
-            if it.value == value:
-                return it
-        raise ValueError
-
 
 class SpecialWeapon(Enum):
     ink_armor = 'インクアーマー'
@@ -88,13 +82,6 @@ class SpecialWeapon(Enum):
     nice_ball = 'ナイスダマ'
     ultra_stamp = 'ウルトラハンコ'
 
-    @classmethod
-    def value_of(cls, value):
-        for it in SpecialWeapon:
-            if it.value == value:
-                return it
-        raise ValueError
-
 
 class Category(Enum):
     shooter = 'シューター'
@@ -107,16 +94,9 @@ class Category(Enum):
     maneuver = 'マニューバー'
     shelter = 'シェルター'
 
-    @classmethod
-    def value_of(cls, value):
-        for it in Category:
-            if it.value == value:
-                return it
-        raise ValueError
-
 
 class Custom(Enum):
-    original = 'オリジナル'
+    original = '無印'
     deco = 'デコ'
     betchu = 'ベッチュー'
     custom = 'カスタム'
@@ -128,13 +108,6 @@ class Custom(Enum):
     foil = 'フォイル'
     other = 'その他'
     solera = 'ソレーラ'
-
-    @classmethod
-    def value_of(cls, value):
-        for it in Custom:
-            if it.value == value:
-                return it
-        raise ValueError
 
 
 class Buki:
@@ -1229,16 +1202,18 @@ class Buki:
 
     @classmethod
     def get(cls,
-            category: Category = None,
-            sub: SubWeapon = None,
-            special: SpecialWeapon = None,
+            categories: List[Category],
+            subs: List[SubWeapon],
+            specials: List[SpecialWeapon],
+            customs: List[Custom],
             replica: bool = False):
 
         list = []
         for weapon in cls.weapons():
-            if (category is None or weapon.category == category) and \
-                    (sub is None or weapon.sub_weapon == sub) and \
-                    (special is None or weapon.special_weapon == special) and \
+            if (len(categories) <= 0 or weapon.category in categories) and \
+                    (len(subs) <= 0 or weapon.sub_weapon in subs) and \
+                    (len(specials) <= 0 or weapon.special_weapon in specials) and \
+                    (len(customs) <= 0 or weapon.custom in customs) and \
                     not (replica and not weapon.replica or not replica and weapon.replica):
                 list.append(weapon)
 

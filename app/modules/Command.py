@@ -1,6 +1,7 @@
 from enum import Enum
+from typing import List
 
-from modules.SplatoonWeapon import Category, SpecialWeapon, SubWeapon, Buki
+from modules.SplatoonWeapon import Category, SpecialWeapon, SubWeapon, Buki, Custom
 
 
 class Function(Enum):
@@ -8,61 +9,53 @@ class Function(Enum):
     give = 'give'
     help = 'help'
 
-    @classmethod
-    def value_of(cls, value):
-        for it in Function:
-            if it.value == value:
-                return it
-        raise ValueError
-
 
 class Option(Enum):
     category = 'category'
     cat = 'cat'
     special = 'special'
     sub = 'sub'
-
-    @classmethod
-    def value_of(cls, value):
-        for it in Option:
-            if it.value == value:
-                return it
-        raise ValueError
+    custom = 'custom'
 
 
 class Command:
-    def __init__(self, func: Function, category: Category, special: SpecialWeapon, sub: SubWeapon):
+    def __init__(self, func: Function, categories: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
+                 customs: List[Custom]):
         self.func = func
-        self.category = category
-        self.special = special
-        self.sub = sub
+        self.categories = categories
+        self.specials = specials
+        self.subs = subs
+        self.customs = customs
 
     @staticmethod
     def instantiate(message: str):
         command = message.replace('$', '').split(' ')
 
         func = Function(command[0])
-        print(func.value)
         del command[0]
 
-        category = None
-        special = None
-        sub = None
+        categories = []
+        specials = []
+        subs = []
+        customs = []
 
         for option in command:
             for enum in Option:
                 if option.startswith('--' + enum.value):
                     value = option.replace('--' + enum.value + '=', '')
                     if enum is Option.cat or enum is Option.category:
-                        category = Category(value)
+                        categories.append(Category(value))
 
                     if enum is Option.special:
-                        special = SpecialWeapon(value)
+                        specials.append(SpecialWeapon(value))
 
                     if enum is Option.sub:
-                        sub = SubWeapon(value)
+                        subs.append(SubWeapon(value))
 
-        return Command(func, category, special, sub)
+                    if enum is Option.custom:
+                        customs.append(Custom(value))
+
+        return Command(func, categories, specials, subs, customs)
 
     def execute(self, replica: bool = False):
-        return Buki.get(self.category, self.sub, self.special, replica)
+        return Buki.get(self.categories, self.subs, self.specials, self.customs, replica)

@@ -24,7 +24,9 @@ async def on_message(message: Message):
 
         weapons = command.execute()
 
-        if command.func is Function.give_me:
+        if len(weapons) <= 0:
+            await message.channel.send(f'{message.author.mention} ｿﾝﾅﾌﾞｷ(ヾﾉ･∀･`)ﾅｲﾅｲ')
+        elif command.func is Function.give_me:
             weapon = weapons[random.randrange(0, len(weapons) - 1)]
             await message.channel.send(f'{message.author.mention} （っ\'-\')╮ =͟͟͞͞    **{weapon.name}**    ﾌﾞｫﾝ')
         elif command.func is Function.give:
@@ -41,9 +43,10 @@ async def on_message(message: Message):
                                        f'---- options ----\n'
                                        f'`--cat` , `--category` : 武器種をきめる ex: `$give --cat=シューター` \n'
                                        f'`--sub` : サブウェポンをきめる ex: `$give --sub=スプラッシュボム` \n'
-                                       f'`--special` : スペシャルウェポンをきめる ex: `$give --special=スーパーチャクチ` \n\n'
+                                       f'`--special` : スペシャルウェポンをきめる ex: `$give --special=スーパーチャクチ` \n'
+                                       f'`--custom` : カスタムをきめる ex: `$give --custom=ブキチセレクション` `$give --custom=無印`\n'
                                        f':warning: いずれも正式名称じゃないと動かないので注意 :warning:\n'
-                                       f':heart: オプションは併用できます :heart:')
+                                       f':heart: オプションは併用できます（同一オプションはOR、他オプションはAND） :heart:')
 
 
 client.run(TOKEN)
