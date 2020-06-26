@@ -16,16 +16,18 @@ class Option(Enum):
     special = 'special'
     sub = 'sub'
     custom = 'custom'
+    replica = 'with-replica'
 
 
 class Command:
     def __init__(self, func: Function, categories: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
-                 customs: List[Custom]):
+                 customs: List[Custom], replica: bool):
         self.func = func
         self.categories = categories
         self.specials = specials
         self.subs = subs
         self.customs = customs
+        self.replica = replica
 
     @staticmethod
     def instantiate(message: str):
@@ -38,10 +40,11 @@ class Command:
         specials = []
         subs = []
         customs = []
+        replica = False
 
         for option in command:
             for enum in Option:
-                if option.startswith('--' + enum.value + '='):
+                if option.startswith('--' + enum.value):
                     value = option.replace('--' + enum.value + '=', '')
 
                     if enum is Option.cat or enum is Option.category:
@@ -56,7 +59,10 @@ class Command:
                     if enum is Option.custom:
                         customs.append(Custom(value))
 
-        return Command(func, categories, specials, subs, customs)
+                    if enum is Option.replica:
+                        replica = True
 
-    def execute(self, replica: bool = False):
-        return Buki.get(self.categories, self.subs, self.specials, self.customs, replica)
+        return Command(func, categories, specials, subs, customs, replica)
+
+    def execute(self):
+        return Buki.get(self.categories, self.subs, self.specials, self.customs, self.replica)

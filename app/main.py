@@ -81,7 +81,8 @@ async def on_message(message: Message):
                                        f'`--cat` , `--category` : 武器種をきめる ex: `$give --cat=シューター` \n'
                                        f'`--sub` : サブウェポンをきめる ex: `$give --sub=スプラッシュボム` \n'
                                        f'`--special` : スペシャルウェポンをきめる ex: `$give --special=スーパーチャクチ` \n'
-                                       f'`--custom` : カスタムをきめる ex: `$give --custom=ブキチセレクション` `$give --custom=無印`\n\n'
+                                       f'`--custom` : カスタムをきめる ex: `$give --custom=ブキチセレクション` `$give --custom=無印`\n'
+                                       f'`--with-replica` : レプリカ系を含める（デフォルトは無効） ex: `$give --with-replica`\n'
                                        f':warning: いずれも正式名称じゃないと動かないので注意 :warning:\n'
                                        f':heart: オプションは併用できます（同一オプションはOR、他オプションはAND） :heart:')
 
