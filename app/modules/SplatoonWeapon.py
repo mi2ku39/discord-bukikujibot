@@ -158,7 +158,7 @@ class Buki:
                 MainWeapon.sushi,
                 SubWeapon.splash_bomb,
                 SpecialWeapon.jetpack,
-                Custom.collabo,
+                Custom.replica,
                 True
             ),
             Buki(
@@ -303,7 +303,8 @@ class Buki:
                 Category.shooter,
                 MainWeapon.bold,
                 SubWeapon.splash_bomb,
-                SpecialWeapon.ultra_stamp
+                SpecialWeapon.ultra_stamp,
+                Custom.bukiti
             ),
             Buki(
                 'N-ZAP83',
@@ -442,7 +443,7 @@ class Buki:
                 MainWeapon.spla_maneuver,
                 SubWeapon.curling_bomb,
                 SpecialWeapon.jetpack,
-                Custom.custom
+                Custom.collabo
             ),
             Buki(
                 'スパッタリー',
@@ -527,8 +528,7 @@ class Buki:
                 Category.charger,
                 MainWeapon.spla_charger,
                 SubWeapon.splash_bomb,
-                SpecialWeapon.hyper_presser,
-                Custom.original
+                SpecialWeapon.hyper_presser
             ),
             Buki(
                 'スクイックリンα',
@@ -627,8 +627,7 @@ class Buki:
                 Category.charger,
                 MainWeapon.litter,
                 SubWeapon.trap,
-                SpecialWeapon.rain,
-                Custom.original
+                SpecialWeapon.rain
             ),
             Buki(
                 'リッター4Kカスタム',
@@ -833,7 +832,8 @@ class Buki:
                 Category.roller,
                 MainWeapon.carbon_roller,
                 SubWeapon.quick_bomb,
-                SpecialWeapon.bomb_pitcher
+                SpecialWeapon.bomb_pitcher,
+                Custom.deco
             ),
             Buki(
                 'ヒーローローラーレプリカ',
@@ -1127,8 +1127,9 @@ class Buki:
                 'スプラスピナーベッチュー',
                 Category.spinner,
                 MainWeapon.spla_spinner,
-                SubWeapon.q_ban_bomb,
-                SpecialWeapon.jetpack
+                SubWeapon.poison_mist,
+                SpecialWeapon.ultra_stamp,
+                Custom.betchu
             ),
             Buki(
                 'パラシェルター',
@@ -1209,13 +1210,13 @@ class Buki:
             customs: List[Custom],
             replica: bool = False):
 
-        list = []
+        filtered_weapons = []
         for weapon in cls.weapons():
             if (len(categories) <= 0 or weapon.category in categories) and \
                     (len(subs) <= 0 or weapon.sub_weapon in subs) and \
                     (len(specials) <= 0 or weapon.special_weapon in specials) and \
                     (len(customs) <= 0 or weapon.custom in customs) and \
                     (not weapon.replica or replica):
-                list.append(weapon)
+                filtered_weapons.append(weapon)
 
-        return list
+        return filtered_weapons
