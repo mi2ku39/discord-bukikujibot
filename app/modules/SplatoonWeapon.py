@@ -284,11 +284,11 @@ class Buki:
                 SpecialWeapon.bomb_pitcher
             ),
             Buki(
-                'L3リールガンチェリー',
+                'H3リールガンチェリー',
                 Category.shooter,
-                MainWeapon.l3_lille,
+                MainWeapon.h3_lille,
                 SubWeapon.splash_shield,
-                SpecialWeapon.ink_armor,
+                SpecialWeapon.bubble_launcher,
                 Custom.bukiti
             ),
             Buki(
