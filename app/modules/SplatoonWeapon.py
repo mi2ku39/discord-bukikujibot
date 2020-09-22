@@ -1205,6 +1205,7 @@ class Buki:
     @classmethod
     def get(cls,
             categories: List[Category],
+            nocat: List[Category],
             subs: List[SubWeapon],
             specials: List[SpecialWeapon],
             customs: List[Custom],
@@ -1213,6 +1214,7 @@ class Buki:
         filtered_weapons = []
         for weapon in cls.weapons():
             if (len(categories) <= 0 or weapon.category in categories) and \
+                    (len(nocat) <= 0 or weapon.category not in nocat) and \
                     (len(subs) <= 0 or weapon.sub_weapon in subs) and \
                     (len(specials) <= 0 or weapon.special_weapon in specials) and \
                     (len(customs) <= 0 or weapon.custom in customs) and \
