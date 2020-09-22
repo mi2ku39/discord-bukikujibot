@@ -17,13 +17,16 @@ class Option(Enum):
     sub = 'sub'
     custom = 'custom'
     replica = 'with-replica'
+    nocat = 'nocat'
+
 
 
 class Command:
-    def __init__(self, func: Function, categories: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
+    def __init__(self, func: Function, categories: List[Category],nocat: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
                  customs: List[Custom], replica: bool):
         self.func = func
         self.categories = categories
+        self.nocat = nocat
         self.specials = specials
         self.subs = subs
         self.customs = customs
@@ -37,6 +40,7 @@ class Command:
         del command[0]
 
         categories = []
+        nocat = []
         specials = []
         subs = []
         customs = []
@@ -50,6 +54,9 @@ class Command:
                     if enum is Option.cat or enum is Option.category:
                         categories.append(Category(value))
 
+                    if enum is Option.nocat:
+                        nocat.append(Category(value))
+
                     if enum is Option.special:
                         specials.append(SpecialWeapon(value))
 
@@ -62,7 +69,7 @@ class Command:
                     if enum is Option.replica:
                         replica = True
 
-        return Command(func, categories, specials, subs, customs, replica)
+        return Command(func, categories, nocat, specials, subs, customs, replica)
 
     def execute(self):
-        return Buki.get(self.categories, self.subs, self.specials, self.customs, self.replica)
+        return Buki.get(self.categories, self.nocat, self.subs, self.specials, self.customs, self.replica)
