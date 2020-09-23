@@ -1213,7 +1213,7 @@ class Buki:
 
         filtered_weapons = []
         for weapon in cls.weapons():
-            if wespon.nocat == True:
+            if weapon.nocat:
                 if (len(categories) <= 0 or weapon.category not in categories) and \
                         (len(subs) <= 0 or weapon.sub_weapon not in subs) and \
                         (len(specials) <= 0 or weapon.special_weapon not in specials) and \
