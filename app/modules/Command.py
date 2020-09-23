@@ -16,7 +16,7 @@ class Option(Enum):
     special = 'special'
     sub = 'sub'
     custom = 'custom'
-    nocat = 'nocat'
+    nocat = 'not'
     replica = 'with-replica'
 
 
