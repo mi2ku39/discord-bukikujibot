@@ -22,7 +22,7 @@ class Option(Enum):
 
 
 class Command:
-    def __init__(self, func: Function, categories: List[Category],nocat: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
+    def __init__(self, func: Function, categories: List[Category],nocat: bool, specials: List[SpecialWeapon], subs: List[SubWeapon],
                  customs: List[Custom], replica: bool):
         self.func = func
         self.categories = categories
@@ -40,7 +40,7 @@ class Command:
         del command[0]
 
         categories = []
-        nocat = []
+        nocat = False
         specials = []
         subs = []
         customs = []
@@ -55,7 +55,7 @@ class Command:
                         categories.append(Category(value))
 
                     if enum is Option.nocat:
-                        nocat.append(Category(value))
+                        nocat = True
 
                     if enum is Option.special:
                         specials.append(SpecialWeapon(value))

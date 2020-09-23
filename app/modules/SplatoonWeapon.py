@@ -1205,7 +1205,7 @@ class Buki:
     @classmethod
     def get(cls,
             categories: List[Category],
-            nocat: List[Category],
+            nocat: False,
             subs: List[SubWeapon],
             specials: List[SpecialWeapon],
             customs: List[Custom],
@@ -1213,12 +1213,19 @@ class Buki:
 
         filtered_weapons = []
         for weapon in cls.weapons():
-            if (len(categories) <= 0 or weapon.category in categories) and \
-                    (len(nocat) <= 0 or weapon.category not in nocat) and \
-                    (len(subs) <= 0 or weapon.sub_weapon in subs) and \
-                    (len(specials) <= 0 or weapon.special_weapon in specials) and \
-                    (len(customs) <= 0 or weapon.custom in customs) and \
-                    (not weapon.replica or replica):
-                filtered_weapons.append(weapon)
+            if wespon.nocat == True:
+                if (len(categories) <= 0 or weapon.category not in categories) and \
+                        (len(subs) <= 0 or weapon.sub_weapon not in subs) and \
+                        (len(specials) <= 0 or weapon.special_weapon not in specials) and \
+                        (len(customs) <= 0 or weapon.custom not in customs) and \
+                        (not weapon.replica or replica):
+                    filtered_weapons.append(weapon)
+            else:
+                if (len(categories) <= 0 or weapon.category in categories) and \
+                        (len(subs) <= 0 or weapon.sub_weapon in subs) and \
+                        (len(specials) <= 0 or weapon.special_weapon in specials) and \
+                        (len(customs) <= 0 or weapon.custom in customs) and \
+                        (not weapon.replica or replica):
+                    filtered_weapons.append(weapon)
 
         return filtered_weapons
