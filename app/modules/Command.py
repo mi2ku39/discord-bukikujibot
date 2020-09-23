@@ -16,19 +16,19 @@ class Option(Enum):
     special = 'special'
     sub = 'sub'
     custom = 'custom'
-    nocat = 'not'
+    not_match = 'not'
     replica = 'with-replica'
 
 
 class Command:
     def __init__(self, func: Function, categories: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
-                 customs: List[Custom], nocat: bool, replica: bool):
+                 customs: List[Custom], not_match: bool, replica: bool):
         self.func = func
         self.categories = categories
         self.specials = specials
         self.subs = subs
         self.customs = customs
-        self.nocat = nocat
+        self.not_match = not_match
         self.replica = replica
 
     @staticmethod
@@ -42,7 +42,7 @@ class Command:
         specials = []
         subs = []
         customs = []
-        nocat = False
+        not_match = False
         replica = False
 
         for option in command:
@@ -62,13 +62,13 @@ class Command:
                     if enum is Option.custom:
                         customs.append(Custom(value))
 
-                    if enum is Option.nocat:
-                        nocat = True
+                    if enum is Option.not_match:
+                        not_match = True
 
                     if enum is Option.replica:
                         replica = True
 
-        return Command(func, categories, specials, subs, customs, nocat, replica)
+        return Command(func, categories, specials, subs, customs, not_match, replica)
 
     def execute(self):
-        return Buki.get(self.categories, self.subs, self.specials, self.customs, self.nocat, self.replica)
+        return Buki.get(self.categories, self.subs, self.specials, self.customs, self.not_match, self.replica)

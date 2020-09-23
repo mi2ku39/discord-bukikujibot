@@ -1208,12 +1208,12 @@ class Buki:
             subs: List[SubWeapon],
             specials: List[SpecialWeapon],
             customs: List[Custom],
-            nocat: bool = False,
+            not_match: bool = False,
             replica: bool = False):
 
         filtered_weapons = []
         for weapon in cls.weapons():
-            if nocat:
+            if not_match:
                 if (len(categories) <= 0 or weapon.category not in categories) and \
                         (len(subs) <= 0 or weapon.sub_weapon not in subs) and \
                         (len(specials) <= 0 or weapon.special_weapon not in specials) and \
