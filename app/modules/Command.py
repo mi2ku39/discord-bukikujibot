@@ -16,20 +16,19 @@ class Option(Enum):
     special = 'special'
     sub = 'sub'
     custom = 'custom'
-    replica = 'with-replica'
     nocat = 'nocat'
-
+    replica = 'with-replica'
 
 
 class Command:
-    def __init__(self, func: Function, categories: List[Category],nocat: bool, specials: List[SpecialWeapon], subs: List[SubWeapon],
-                 customs: List[Custom], replica: bool):
+    def __init__(self, func: Function, categories: List[Category], specials: List[SpecialWeapon], subs: List[SubWeapon],
+                 customs: List[Custom], nocat: bool, replica: bool):
         self.func = func
         self.categories = categories
-        self.nocat = nocat
         self.specials = specials
         self.subs = subs
         self.customs = customs
+        self.nocat = nocat
         self.replica = replica
 
     @staticmethod
@@ -40,10 +39,10 @@ class Command:
         del command[0]
 
         categories = []
-        nocat = False
         specials = []
         subs = []
         customs = []
+        nocat = False
         replica = False
 
         for option in command:
@@ -54,9 +53,6 @@ class Command:
                     if enum is Option.cat or enum is Option.category:
                         categories.append(Category(value))
 
-                    if enum is Option.nocat:
-                        nocat = True
-
                     if enum is Option.special:
                         specials.append(SpecialWeapon(value))
 
@@ -66,10 +62,13 @@ class Command:
                     if enum is Option.custom:
                         customs.append(Custom(value))
 
+                    if enum is Option.nocat:
+                        nocat = True
+
                     if enum is Option.replica:
                         replica = True
 
-        return Command(func, categories, nocat, specials, subs, customs, replica)
+        return Command(func, categories, specials, subs, customs, nocat, replica)
 
     def execute(self):
-        return Buki.get(self.categories, self.nocat, self.subs, self.specials, self.customs, self.replica)
+        return Buki.get(self.categories, self.subs, self.specials, self.customs, self.nocat, self.replica)

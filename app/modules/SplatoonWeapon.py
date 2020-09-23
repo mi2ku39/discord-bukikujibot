@@ -1205,10 +1205,10 @@ class Buki:
     @classmethod
     def get(cls,
             categories: List[Category],
-            nocat: False,
             subs: List[SubWeapon],
             specials: List[SpecialWeapon],
             customs: List[Custom],
+            nocat: bool = False,
             replica: bool = False):
 
         filtered_weapons = []
