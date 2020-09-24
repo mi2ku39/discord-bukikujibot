@@ -83,6 +83,7 @@ async def on_message(message: Message):
                                        f'`--special` : スペシャルウェポンをきめる ex: `$give --special=スーパーチャクチ` \n'
                                        f'`--custom` : カスタムをきめる ex: `$give --custom=ブキチセレクション` `$give --custom=無印`\n'
                                        f'`--with-replica` : レプリカ系を含める（デフォルトは無効） ex: `$give --with-replica`\n'
+                                       f'`--not` : 他のoptionと一緒に使うとnot検索(対象に含めず)ができるようになるぞ\n'
                                        f':warning: いずれも正式名称じゃないと動かないので注意 :warning:\n'
                                        f':heart: オプションは併用できます（同一オプションはOR、他オプションはAND） :heart:\n\n'
                                        f'Powered by GhostServer JP\n'
